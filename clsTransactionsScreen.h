@@ -1,10 +1,14 @@
 #pragma once
 #include <iostream>
-#include "clsScreen.h"
-#include "clsInputValidate.h"
 #include <iomanip>
 
+#include "clsScreen.h"
+#include "clsInputValidate.h"
+#include "clsDepositScreen.h"
+#include "clsWithdrawScreen.h"
+
 using namespace std;
+
 
 class clsTransactionsScreen : clsScreen
 {
@@ -16,6 +20,7 @@ private:
         eShowTotalBalance = 3, 
         eShowMainMenue = 4
     };
+
 
     static void _DrawTransactionmenuList()
     {
@@ -67,14 +72,15 @@ private:
         }
     }
 
+
     static void _ShowDepositScreen()
     {
-        cout << "\n Deposit Screen will be here.\n";
+        clsDepositScreen::ShowDepositScreen();
     }
 
     static void _ShowWithdrawScreen()
     {
-        cout << "\n Withdraw Screen will be here.\n";
+        clsWithdrawScreen::ShowWithdrawScreen();
     }
 
     static void _ShowTotalBalancesScreen()

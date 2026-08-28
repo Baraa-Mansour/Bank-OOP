@@ -269,5 +269,31 @@ public:
 	{
 		return (this->_Mode == enMode::EmptyMode);
 	}
+
+	bool Deposit(double Amount)
+	{
+		if (Amount <= 0)
+		{
+			return false;
+		}
+
+		Balance += Amount;
+		this->Save();
+
+		return true;
+	}
+
+	bool Withdraw(double Amount)
+	{
+		if (Amount > this->Balance)
+		{
+			return false;
+		}
+
+		Balance -= Amount;
+		this->Save();
+
+		return true;
+	}
 };
 const string clsBankClient::_ClientsFilePath = "Clients.txt";
