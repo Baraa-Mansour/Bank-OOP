@@ -182,6 +182,19 @@ public:
 		return vClients;
 	}
 
+	static double GetTotalBalances()
+	{
+		vector<clsBankClient> vClients = clsBankClient::GetAllClients();
+		double Sum = 0;
+
+		for (clsBankClient& Client : vClients)
+		{
+			Sum += Client.Balance;
+		}
+
+		return Sum;
+	}
+
 	static clsBankClient Find(string AccountNumber)
 	{
 		fstream File;
