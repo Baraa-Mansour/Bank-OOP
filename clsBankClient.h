@@ -1,13 +1,18 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include "clsString.h"
 #include "clsPerson.h"
+#include "clsFile.h"
 using namespace std;
 
 
-class clsBankClient : clsPerson
+class clsBankClient : public clsPerson
 {
 private:
-	const string ClientsFilePath = "Clients.txt";
+	static const string _ClientsFilePath;
 	enum enMode 
 	{ 
 		EmptyMode = 0,
@@ -28,7 +33,76 @@ private:
 
 		this->_Mode = Mode;
 	}
+
+	static clsBankClient _ConvertLinetoClientObject(string Line, string Seperator = "#//#")
+	{
+		vector<string> vClientData;
+		vClientData = clsString::Split(Line, Seperator);
+
+		return clsBankClient(enMode::UpdateMode, vClientData[0], vClientData[1], vClientData[2],
+			vClientData[3], vClientData[4], vClientData[5], stod(vClientData[6]));
+
+	}
+	static string _ConverClientObjectToLine(clsBankClient Client, string Seperator = "#//#")
+	{
+		string stClientRecord = "";
+		stClientRecord += Client.FirstName + Seperator;
+		stClientRecord += Client.LastName + Seperator;
+		stClientRecord += Client.Email + Seperator;
+		stClientRecord += Client.Phone + Seperator;
+		stClientRecord += Client.AccountNumber + Seperator;
+		stClientRecord += Client.PinCode + Seperator;
+		stClientRecord += to_string(Client.Balance);
+
+		return stClientRecord;
+	}
+	static clsBankClient _GetEmptyClientObject()
+	{
+		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
+	}
+
+	static void _SaveClientsVector(vector<clsBankClient> vClients)
+	{
+		vector<string> vLines;
+		string Line = "";
+
+		for (const clsBankClient& Client : vClients)
+		{
+			Line = _ConverClientObjectToLine(Client);
+			vLines.push_back(Line);
+		}
+
+		clsFile::SaveLineVector(vLines, _ClientsFilePath);
+	}
+
+	void _Update()
+	{
+		bool IsFound = false;
+
+		vector<clsBankClient> vClients = GetAllClients();
+
+		for (clsBankClient& Client : vClients)
+		{
+			if (this->AccountNumber == Client.AccountNumber)
+			{
+				Client = *this;
+				IsFound = true;
+				break;
+			}
+		}
+
+		if (IsFound)
+		{
+			_SaveClientsVector(vClients);
+		}
+	}
+
 public:
+	enum enSaveResults
+	{
+		svFaildEmptyObject = 0,
+		svSucceeded = 1
+	};
 
 	string GetAccountNumber()
 	{
@@ -54,7 +128,7 @@ public:
 	{
 		return this->_Balance;
 	}
-	__declspec(property(put = SetBalance, get = GetBalance)) string Balance;
+	__declspec(property(put = SetBalance, get = GetBalance)) double Balance;
 
 	void Print()
 	{
@@ -71,8 +145,75 @@ public:
 		cout << "\n___________________\n";
 	}
 
+	static vector<clsBankClient> GetAllClients()
+	{
+		vector<clsBankClient> vClients;
+		vector<string> vLines = clsFile::GetAllLines(_ClientsFilePath);
+
+		for (string& Line : vLines)
+		{
+			clsBankClient Client = _ConvertLinetoClientObject(Line);
+			vClients.push_back(Client);
+		}
+
+		return vClients;
+	}
+
+	static clsBankClient Find(string AccountNumber)
+	{
+		fstream File;
+		File.open(_ClientsFilePath, ios::in);
+
+		if (File.is_open())
+		{
+			string Line = "";
+			while (getline(File, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				if (Client.AccountNumber == AccountNumber)
+				{
+					File.close();
+					return Client;
+				}
+			}
+			File.close();
+		}
+		return _GetEmptyClientObject();
+	}
+	static clsBankClient Find(string AccountNumber, string PinCode)
+	{
+		clsBankClient Client = Find(AccountNumber);
+
+		if (Client.IsEmpty())
+		{
+			return Client;
+		}
+
+		return Client.PinCode == PinCode ? Client : _GetEmptyClientObject();
+	}
+
+	enSaveResults Save()
+	{
+		switch (this->_Mode)
+		{
+		case enMode::UpdateMode:
+			this->_Update();
+			return enSaveResults::svSucceeded;
+		case enMode::EmptyMode:
+			return enSaveResults::svFaildEmptyObject;
+		default:
+			break;
+		}
+	}
+
+	static bool IsClientExist(string AccountNumber)
+	{
+		return !(clsBankClient::Find(AccountNumber).IsEmpty());
+	}
+
 	bool IsEmpty()
 	{
 		return (this->_Mode == enMode::EmptyMode);
 	}
 };
+const string clsBankClient::_ClientsFilePath = "Clients.txt";
