@@ -113,5 +113,16 @@ public:
 		return	clsDate::IsValidDate(Date);
 	}
 
+	static bool ReadYorN(string Message)
+	{
+		char Choice = 'y';
+		do
+		{
+			cout << Message;
+			cin >> Choice;
+		} while (tolower(Choice) != 'y' && tolower(Choice) != 'n');
+
+		return tolower(Choice) == 'y';
+	}
 };
 
