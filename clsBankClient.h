@@ -16,7 +16,8 @@ private:
 	enum enMode 
 	{ 
 		EmptyMode = 0,
-		UpdateMode = 1
+		UpdateMode = 1,
+		AddNewMode = 2
 	};
 
 	string _AccountNumber;
@@ -61,6 +62,12 @@ private:
 		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
 
+	static void _SaveClientToFile(clsBankClient Client)
+	{
+		string Line = _ConverClientObjectToLine(Client);
+
+		clsFile::SaveLine(Line, _ClientsFilePath);
+	}
 	static void _SaveClientsVector(vector<clsBankClient> vClients)
 	{
 		vector<string> vLines;
@@ -96,14 +103,20 @@ private:
 			_SaveClientsVector(vClients);
 		}
 	}
+	void _AddNew()
+	{
+		_SaveClientToFile(*this);
+	}
 
 public:
 	enum enSaveResults
 	{
 		svFaildEmptyObject = 0,
-		svSucceeded = 1
+		svSucceeded = 1,
+		svFaildAccountNumberExists = 2
 	};
 
+	// Properties
 	string GetAccountNumber()
 	{
 		return this->_AccountNumber;
@@ -129,6 +142,12 @@ public:
 		return this->_Balance;
 	}
 	__declspec(property(put = SetBalance, get = GetBalance)) double Balance;
+	// ---------------
+
+	static clsBankClient GetAddNewClientObject(string AccountNumber)
+	{
+		return clsBankClient(enMode::AddNewMode, "", "", "", "", AccountNumber, "", 0);
+	}
 
 	void Print()
 	{
@@ -198,6 +217,13 @@ public:
 		{
 		case enMode::UpdateMode:
 			this->_Update();
+			return enSaveResults::svSucceeded;
+		case enMode::AddNewMode:
+			if (clsBankClient::IsClientExist(this->AccountNumber))
+				return enSaveResults::svFaildAccountNumberExists;
+
+			this->_AddNew();
+			this->_Mode = enMode::UpdateMode;
 			return enSaveResults::svSucceeded;
 		case enMode::EmptyMode:
 			return enSaveResults::svFaildEmptyObject;

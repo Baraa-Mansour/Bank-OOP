@@ -43,5 +43,17 @@ public:
 			File.close();
 		}
 	}
+	static void SaveLine(string Line, string FilePath)
+	{
+		fstream File;
+		File.open(FilePath, ios::app);
+
+		if (File.is_open())
+		{
+			File << Line << endl;
+
+			File.close();
+		}
+	}
 };
 
