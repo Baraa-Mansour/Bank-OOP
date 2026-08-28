@@ -9,6 +9,7 @@
 #include "clsDeleteClientScreen.h"
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
+#include "clsTransactionsScreen.h"
 
 using namespace std;
 
@@ -83,7 +84,7 @@ private:
             break;
         }
 
-        if (Option != enMainMenueOptions::eExit)
+        if ((Option != enMainMenueOptions::eExit) && (Option != enMainMenueOptions::eShowTransactionsMenue))
         {
             cout << "Enter Any Key To Back To Mainmenu ...";
             system("pause > 0");
@@ -118,8 +119,7 @@ private:
 
     static void _ShowTransactionsMenue()
     {
-        cout << "\nTransactions Menue Will be here...\n";
-
+        clsTransactionsScreen::ShowTransactionsMenue();
     }
 
     static void _ShowManageUsersMenue()
