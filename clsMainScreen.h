@@ -84,7 +84,9 @@ private:
             break;
         }
 
-        if ((Option != enMainMenueOptions::eExit) && (Option != enMainMenueOptions::eShowTransactionsMenue))
+        if ((Option != enMainMenueOptions::eExit) &&
+            (Option != enMainMenueOptions::eShowTransactionsMenue) &&
+            (Option != enMainMenueOptions::eManageUsers))
         {
             cout << "Enter Any Key To Back To Mainmenu ...";
             system("pause > 0");
