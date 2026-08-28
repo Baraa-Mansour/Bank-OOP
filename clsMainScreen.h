@@ -1,11 +1,13 @@
 #pragma once
 #include<iostream>
 #include <iomanip>
+
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsClientListScreen.h"
 #include "clsAddNewClientScreen.h"
 #include "clsDeleteClientScreen.h"
+#include "clsUpdateClientScreen.h"
 
 using namespace std;
 
@@ -105,8 +107,7 @@ private:
 
     static void _ShowUpdateClientScreen()
     {
-        cout << "\nUpdate Client Screen Will be here...\n";
-
+        clsUpdateClientScreen::ShowUpdateClientScreen();
     }
 
     static void _ShowFindClientScreen()
