@@ -1,24 +1,22 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
 #include "clsScreen.h"
 #include "clsBankClient.h"
-#include <iomanip>
+
 
 class clsClientListScreen : clsScreen
 {
-
 private:
     static void _PrintClientRecordLine(clsBankClient Client)
     {
-
         cout << setw(8) << left << "" << "| " << setw(15) << left << Client.AccountNumber;
         cout << "| " << setw(20) << left << Client.FullName();
         cout << "| " << setw(12) << left << Client.Phone;
         cout << "| " << setw(20) << left << Client.Email;
         cout << "| " << setw(10) << left << Client.PinCode;
         cout << "| " << setw(12) << left << Client.Balance;
-
     }
     static void _DrawTableHeader()
     {
@@ -36,7 +34,6 @@ private:
     }
 
 public:
-
 
     static void ShowClientsList()
     {

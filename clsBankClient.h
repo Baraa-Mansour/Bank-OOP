@@ -153,21 +153,6 @@ public:
 		return clsBankClient(enMode::AddNewMode, "", "", "", "", AccountNumber, "", 0);
 	}
 
-	void Print()
-	{
-		cout << "\nClient Card:";
-		cout << "\n___________________";
-		cout << "\nFirstName   : " << FirstName;
-		cout << "\nLastName    : " << LastName;
-		cout << "\nFull Name   : " << FullName();
-		cout << "\nEmail       : " << Email;
-		cout << "\nPhone       : " << Phone;
-		cout << "\nAcc. Number : " << AccountNumber;
-		cout << "\nPassword    : " << PinCode;
-		cout << "\nBalance     : " << Balance;
-		cout << "\n___________________\n";
-	}
-
 	static vector<clsBankClient> GetAllClients()
 	{
 		vector<clsBankClient> vClients;

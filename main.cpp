@@ -5,11 +5,7 @@
 #include "clsUtil.h"
 #include "clsMainScreen.h"
 
-
-
-
 int main()
-
 {
     clsMainScreen::ShowMainmenuScreen();
     return 0;

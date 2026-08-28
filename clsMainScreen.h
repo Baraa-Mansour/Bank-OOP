@@ -1,12 +1,13 @@
 #pragma once
 #include<iostream>
 #include <iomanip>
-
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsClientListScreen.h"
+#include "clsAddNewClientScreen.h"
 
 using namespace std;
+
 
 class clsMainScreen : clsScreen
 {
@@ -89,8 +90,7 @@ private:
 
     static void _ShowAddNewClientsScreen()
     {
-        cout << "\nAdd New Client Screen Will be here...\n";
-
+        clsAddNewClientScreen::ShowAddNewClientScreen();
     }
 
     static void _ShowDeleteClientScreen()
