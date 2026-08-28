@@ -7,6 +7,7 @@ using namespace std;
 class clsBankClient : clsPerson
 {
 private:
+	const string ClientsFilePath = "Clients.txt";
 	enum enMode 
 	{ 
 		EmptyMode = 0,
@@ -41,7 +42,7 @@ public:
 	}
 	string GetPinCode()
 	{
-		this->_PinCode;
+		return this->_PinCode;
 	}
 	__declspec(property(put = SetPinCode, get = GetPinCode)) string PinCode;
 
@@ -54,6 +55,21 @@ public:
 		return this->_Balance;
 	}
 	__declspec(property(put = SetBalance, get = GetBalance)) string Balance;
+
+	void Print()
+	{
+		cout << "\nClient Card:";
+		cout << "\n___________________";
+		cout << "\nFirstName   : " << FirstName;
+		cout << "\nLastName    : " << LastName;
+		cout << "\nFull Name   : " << FullName();
+		cout << "\nEmail       : " << Email;
+		cout << "\nPhone       : " << Phone;
+		cout << "\nAcc. Number : " << AccountNumber;
+		cout << "\nPassword    : " << PinCode;
+		cout << "\nBalance     : " << Balance;
+		cout << "\n___________________\n";
+	}
 
 	bool IsEmpty()
 	{

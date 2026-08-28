@@ -56,9 +56,14 @@ public:
 	{
 		this->_Phone = Phone;
 	}
-	string GetPhone(string Phone)
+	string GetPhone()
 	{
 		return this->_Phone;
 	}
 	__declspec(property(put = SetPhone, get = GetPhone)) string Phone;
+
+	string FullName()
+	{
+		return this->FirstName + " " + this->LastName;
+	}
 };
