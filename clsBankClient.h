@@ -24,6 +24,7 @@ private:
 	string _PinCode;
 	double _Balance;
 	enMode _Mode;
+	bool _MarkedForDelete = false;
 
 	clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone, string AccountNumber, string PinCode, double Balance)
 		: clsPerson(FirstName, LastName, Email, Phone)
@@ -75,8 +76,11 @@ private:
 
 		for (const clsBankClient& Client : vClients)
 		{
-			Line = _ConverClientObjectToLine(Client);
-			vLines.push_back(Line);
+			if (!Client._MarkedForDelete)
+			{
+				Line = _ConverClientObjectToLine(Client);
+				vLines.push_back(Line);
+			}
 		}
 
 		clsFile::SaveLineVector(vLines, _ClientsFilePath);
@@ -230,6 +234,32 @@ public:
 		default:
 			break;
 		}
+	}
+
+	bool Delete()
+	{
+		bool IsFound = false;
+
+		vector<clsBankClient> vClients = GetAllClients();
+
+		for (clsBankClient& Client : vClients)
+		{
+			if (this->AccountNumber == Client.AccountNumber)
+			{
+				IsFound = true;
+
+				Client._MarkedForDelete = true;
+				break;
+			}
+		}
+
+		if (IsFound)
+		{
+			_SaveClientsVector(vClients);
+			*this = _GetEmptyClientObject();
+		}
+
+		return IsFound;
 	}
 
 	static bool IsClientExist(string AccountNumber)
