@@ -8,7 +8,7 @@
 using namespace std;
 
 
-class clsRegisterLogin
+class clsLoginRegister
 {
 private:
     static const string _RegisterLoginFilePath;
@@ -17,7 +17,7 @@ private:
 	string _DateTime;
 	int _Permissions;
 
-    clsRegisterLogin()
+    clsLoginRegister()
     {
         this->UserName = CurrentUser.UserName;
         this->Password = CurrentUser.Password;
@@ -25,7 +25,7 @@ private:
         this->Permissions = CurrentUser.Permissions;
     }
 
-    static string _ConverObjectToLine(clsRegisterLogin Object, string Seperator = "#//#")
+    static string _ConverObjectToLine(clsLoginRegister Object, string Seperator = "#//#")
     {
         string LoginRecord = "";
         LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
@@ -34,7 +34,21 @@ private:
         LoginRecord += to_string(Object.Permissions);
         return LoginRecord;
     }
-    static void _SaceObjectToFile(clsRegisterLogin Object)
+    static clsLoginRegister _ConvertLoginRegisterLineToRecord(string Line, string Seperator = "#//#")
+    {
+        clsLoginRegister LoginRegisterRecord;
+
+        vector <string> LoginRegisterDataLine = clsString::Split(Line, Seperator);
+
+        LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
+        LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
+        LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+        LoginRegisterRecord.Permissions = stoi(LoginRegisterDataLine[3]);
+
+        return LoginRegisterRecord;
+    }
+
+    static void _SaceObjectToFile(clsLoginRegister Object)
     {
         string Line = _ConverObjectToLine(Object);
         clsFile::SaveLine(Line, _RegisterLoginFilePath);
@@ -60,9 +74,23 @@ public:
 
 	static void RigisterLogin()
 	{
-        clsRegisterLogin Object = clsRegisterLogin();
+        clsLoginRegister Object = clsLoginRegister();
 
         _SaceObjectToFile(Object);
 	}
+
+    static  vector <clsLoginRegister> GetLoginRegisterList()
+    {
+        vector<string> vLines = clsFile::GetAllLines(_RegisterLoginFilePath);
+        vector <clsLoginRegister> vLoginRegisterRecord;
+
+        for (string Line : vLines)
+        {
+            clsLoginRegister Record = _ConvertLoginRegisterLineToRecord(Line);
+            vLoginRegisterRecord.push_back(Record);
+        }
+
+        return vLoginRegisterRecord;
+    }
 };
-const string clsRegisterLogin::_RegisterLoginFilePath = "LoginRegister.txt";
+const string clsLoginRegister::_RegisterLoginFilePath = "LoginRegister.txt";

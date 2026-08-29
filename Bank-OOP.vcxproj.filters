@@ -22,6 +22,7 @@
   <ItemGroup>
     <Text Include="Clients.txt" />
     <Text Include="Users.txt" />
+    <Text Include="LoginRegister.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -108,7 +109,10 @@
     <ClInclude Include="clsLoginScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsRegisterLogin.h">
+    <ClInclude Include="clsLoginRegister.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsLoginRegisterScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

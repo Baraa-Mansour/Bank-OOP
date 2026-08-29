@@ -6,7 +6,7 @@
 #include <iomanip>
 #include "clsMainScreen.h"
 #include "Global.h"
-#include "clsRegisterLogin.h"
+#include "clsLoginRegister.h"
 
 class clsLoginScreen : public clsScreen
 {
@@ -49,6 +49,6 @@ public:
             return;
         }
 
-        clsRegisterLogin::RigisterLogin();
+        clsLoginRegister::RigisterLogin();
     }
 };
