@@ -48,7 +48,7 @@ private:
         return LoginRegisterRecord;
     }
 
-    static void _SaceObjectToFile(clsLoginRegister Object)
+    static void _SaveObjectToFile(clsLoginRegister Object)
     {
         string Line = _ConverObjectToLine(Object);
         clsFile::SaveLine(Line, _RegisterLoginFilePath);
@@ -76,7 +76,7 @@ public:
 	{
         clsLoginRegister Object = clsLoginRegister();
 
-        _SaceObjectToFile(Object);
+        _SaveObjectToFile(Object);
 	}
 
     static  vector <clsLoginRegister> GetLoginRegisterList()
