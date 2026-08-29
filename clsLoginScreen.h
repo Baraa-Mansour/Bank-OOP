@@ -6,6 +6,7 @@
 #include <iomanip>
 #include "clsMainScreen.h"
 #include "Global.h"
+#include "clsRegisterLogin.h"
 
 class clsLoginScreen : public clsScreen
 {
@@ -45,6 +46,9 @@ public:
         if (FailedLoginCounter == 3)
         {
             IsSystemLocked = true;
+            return;
         }
+
+        clsRegisterLogin::RigisterLogin();
     }
 };
