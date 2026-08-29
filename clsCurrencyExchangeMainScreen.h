@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include "clsScreen.h"
 #include "clsInputValidate.h"
-#include <iomanip>
+#include "clsCurrenciesListScreen.h"
+
 
 using namespace std;
 
@@ -18,6 +20,7 @@ private:
         eCurrencyCalculator = 4,
         eMainMenue = 5
     };
+
 
     static void _DrawCurrencyList()
     {
@@ -68,10 +71,10 @@ private:
         }
     }
 
+
     static void _ShowCurrenciesListScreen()
     {
-        cout << "\nCurriencies List Screen Will Be Here.\n";
-
+        clsCurrenciesListScreen::ShowCurrenciesListScreen();
     }
 
     static void _ShowFindCurrencyScreen()
