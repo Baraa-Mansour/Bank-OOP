@@ -119,6 +119,8 @@ public:
 
     void UpdateRate(double NewRate)
     {
+        if (NewRate <= 0)
+            return;
         this->_Rate = NewRate;
         this->_Update();
     }
