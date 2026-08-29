@@ -11,7 +11,7 @@
 using namespace std;
 
 
-class clsUser : clsPerson
+class clsUser : public clsPerson
 {
 private:
     static const string _UsersFilePath;
@@ -26,6 +26,7 @@ private:
     string _UserName;
     string _Password;
     int _Permissions;
+
     enMode _Mode;
     bool _MarkedForDelete = false;
 

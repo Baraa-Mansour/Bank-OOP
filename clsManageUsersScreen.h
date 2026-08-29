@@ -3,10 +3,11 @@
 #include <iomanip>
 #include "clsScreen.h"
 #include "clsInputValidate.h"
+#include "clsUsersListScreen.h"
 
 using namespace std;
 
-class clsManageUsersScreen :protected clsScreen
+class clsManageUsersScreen : public clsScreen
 {
 private:
     enum enManageUsersMenueOptions 
@@ -81,7 +82,7 @@ private:
 
     static void _ShowListUsersScreen()
     {
-        cout << "\nList Users Screen Will Be Here.\n";
+        clsListUsersScreen::ShowUsersList();
     }
 
     static void _ShowAddNewUserScreen()
