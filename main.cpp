@@ -4,9 +4,14 @@
 #include <iomanip>
 #include "clsUtil.h"
 #include "clsMainScreen.h"
+#include "clsLoginScreen.h"
 
 int main()
 {
-    clsMainScreen::ShowMainmenuScreen();
+    while (true)
+    {
+        clsLoginScreen::ShowLoginScreen();
+        clsMainScreen::ShowMainmenuScreen();
+    }
     return 0;
 }
