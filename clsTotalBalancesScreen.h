@@ -61,5 +61,6 @@ public:
         }
             
         _DrawTableFooter(TotalBalances);
+        Pause("Enter Any Key To Back To Transaction Menu ...");
     }
 };

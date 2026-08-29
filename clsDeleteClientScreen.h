@@ -41,6 +41,11 @@ private:
 public:
     static void ShowDeleteClientScreen()
     {
+        if (!_CheckAccessRights(clsUser::enPermissions::pDeleteClient))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         _DrawScreenHeader("\tDelete Client Screen");
 
         string AccountNumber = _ReadExistAccoutNumber();
@@ -60,6 +65,7 @@ public:
                 cout << "\nError Client Was not Deleted\n";
             }
         }
+        Pause();
     }
 };
 

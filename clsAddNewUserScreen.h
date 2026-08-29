@@ -115,5 +115,6 @@ public:
             cout << "\nError User was not saved because UserName is used!\n";
             break;
         }
+        Pause("Enter Any Key To Back To User Manage Menu ...");
     }
 };

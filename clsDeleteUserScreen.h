@@ -63,5 +63,6 @@ public:
                 cout << "\nError User Was not Deleted\n";
             }
         }
+        Pause("Enter Any Key To Back To User Manage Menu ...");
     }
 };

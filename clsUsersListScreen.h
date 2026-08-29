@@ -58,5 +58,7 @@ public:
 
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "______________________________________________\n" << endl;
+
+        Pause("Enter Any Key To Back To User Manage Menu ...");
     }
 };

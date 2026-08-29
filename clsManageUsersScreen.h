@@ -24,7 +24,19 @@ private:
         eMainMenue = 6
     };
 
-
+    static void _DrawUserManagemenuList()
+    {
+        cout << setw(37) << left << "" << "===========================================\n";
+        cout << setw(37) << left << "" << "\t\t  Manage Users Menue\n";
+        cout << setw(37) << left << "" << "===========================================\n";
+        cout << setw(37) << left << "" << "\t[1] List Users.\n";
+        cout << setw(37) << left << "" << "\t[2] Add New User.\n";
+        cout << setw(37) << left << "" << "\t[3] Delete User.\n";
+        cout << setw(37) << left << "" << "\t[4] Update User.\n";
+        cout << setw(37) << left << "" << "\t[5] Find User.\n";
+        cout << setw(37) << left << "" << "\t[6] Main Menue.\n";
+        cout << setw(37) << left << "" << "===========================================\n";
+    }
     static enManageUsersMenueOptions _ReadManageUsersMenueOption()
     {
         cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 6]? ";
@@ -62,25 +74,6 @@ private:
         default:
             break;
         }
-
-        if (ManageUsersMenueOption != eMainMenue)
-        {
-            cout << "Enter Any Key To Back To User Manage menu ...";
-            system("pause > 0");
-        }
-    }
-    static void _DrawUserManagemenuList()
-    {
-        cout << setw(37) << left << "" << "===========================================\n";
-        cout << setw(37) << left << "" << "\t\t  Manage Users Menue\n";
-        cout << setw(37) << left << "" << "===========================================\n";
-        cout << setw(37) << left << "" << "\t[1] List Users.\n";
-        cout << setw(37) << left << "" << "\t[2] Add New User.\n";
-        cout << setw(37) << left << "" << "\t[3] Delete User.\n";
-        cout << setw(37) << left << "" << "\t[4] Update User.\n";
-        cout << setw(37) << left << "" << "\t[5] Find User.\n";
-        cout << setw(37) << left << "" << "\t[6] Main Menue.\n";
-        cout << setw(37) << left << "" << "===========================================\n";
     }
 
 
@@ -112,6 +105,11 @@ private:
 public:
     static void ShowManageUsersMenue()
     {
+        if (!_CheckAccessRights(clsUser::enPermissions::pManageUsers))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         enManageUsersMenueOptions Option;
 
         do

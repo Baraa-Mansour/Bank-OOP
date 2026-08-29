@@ -85,14 +85,6 @@ private:
         default:
             break;
         }
-
-        if ((Option != enMainMenueOptions::eLogout) &&
-            (Option != enMainMenueOptions::eShowTransactionsMenue) &&
-            (Option != enMainMenueOptions::eManageUsers))
-        {
-            cout << "Enter Any Key To Back To Mainmenu ...";
-            system("pause > 0");
-        }
     }
 
 

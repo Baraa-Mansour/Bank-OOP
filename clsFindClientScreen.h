@@ -43,7 +43,11 @@ public:
 
     static void ShowFindClientScreen()
     {
-
+        if (!_CheckAccessRights(clsUser::enPermissions::pFindClient))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         _DrawScreenHeader("\tFind Client Screen");
 
         string AccountNumber = _ReadExistAccoutNumber();
@@ -60,5 +64,6 @@ public:
         }
 
         _PrintClient(Client1);
+        Pause();
     }
 };

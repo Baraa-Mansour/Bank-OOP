@@ -311,5 +311,10 @@ public:
     {
         return (_Mode == enMode::EmptyMode);
     }
+
+    bool CheckAccessPermission(enPermissions Permission)
+    {
+        return (this->Permissions & Permission) == Permission;
+    }
 };
 const string clsUser::_UsersFilePath = "Users.txt";

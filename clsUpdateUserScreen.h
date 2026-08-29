@@ -121,5 +121,6 @@ public:
                 break;
             }
         }
+        Pause("Enter Any Key To Back To User Manage Menu ...");
     }
 };

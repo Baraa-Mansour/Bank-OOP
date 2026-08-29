@@ -69,5 +69,6 @@ public:
         {
             cout << "\nOperation was cancelled.\n";
         }
+        Pause("Enter Any Key To Back To Transaction Menu ...");
     }
 };

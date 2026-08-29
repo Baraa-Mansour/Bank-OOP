@@ -37,6 +37,11 @@ public:
 
     static void ShowClientsList()
     {
+        if (!_CheckAccessRights(clsUser::enPermissions::pListClients))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         vector <clsBankClient> vClients = clsBankClient::GetAllClients();
 
         string Title = "\t  Client List Screen";
@@ -58,5 +63,7 @@ public:
 
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "_________________________________________\n" << endl;
+
+        Pause();
     }
 };

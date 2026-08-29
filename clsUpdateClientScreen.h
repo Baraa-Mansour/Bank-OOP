@@ -57,7 +57,11 @@ public:
 
     static void ShowUpdateClientScreen()
     {
-
+        if (!_CheckAccessRights(clsUser::enPermissions::pUpdateClients))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         _DrawScreenHeader("\tUpdate Client Screen");
 
         string AccountNumber = clsUpdateClientScreen::_ReadExistAccoutNumber();
@@ -87,5 +91,7 @@ public:
                 break;
             }
         }
+
+        Pause();
     }
 };

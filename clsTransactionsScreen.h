@@ -65,12 +65,6 @@ private:
         default:
             break;
         }
-
-        if (TransactionsMenueOption != enTransactionsMenueOptions::eShowMainMenue)
-        {
-            cout << "Enter Any Key To Back To Transaction menu ...";
-            system("pause > 0");
-        }
     }
 
 
@@ -92,6 +86,11 @@ private:
 public:
     static void ShowTransactionsMenue()
     {
+        if (!_CheckAccessRights(clsUser::enPermissions::pTranactions))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         enTransactionsMenueOptions Option;
         do
         {

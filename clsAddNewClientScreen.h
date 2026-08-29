@@ -58,6 +58,11 @@ public:
 
     static void ShowAddNewClientScreen()
     {
+        if (!_CheckAccessRights(clsUser::enPermissions::pAddNewClient))
+        {
+            _ShowAccessDeniedScreen();
+            return;
+        }
         _DrawScreenHeader("\t  Add New Client Screen");
 
         string AccountNumber = clsAddNewClientScreen::_ReadUniqueAccountNumber();
@@ -82,5 +87,6 @@ public:
             cout << "\nError account was not saved because account number is used!\n";
             break;
         }
+        Pause();
     }
 };
