@@ -82,6 +82,14 @@ private:
     }
 
 public:
+    clsCurrency()
+    {
+        _Mode = EmptyMode;
+        _Country = "";
+        _CurrencyCode = "";
+        _CurrencyName = "";
+        _Rate = 0;
+    }
     bool IsEmpty()
     {
         return (_Mode == enMode::EmptyMode);
