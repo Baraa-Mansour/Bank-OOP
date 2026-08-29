@@ -15,7 +15,7 @@
 using namespace std;
 
 
-class clsMainScreen : clsScreen
+class clsMainScreen : public clsScreen
 {
 private:
     enum enMainMenueOptions 

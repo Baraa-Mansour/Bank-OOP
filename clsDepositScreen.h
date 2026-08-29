@@ -5,7 +5,7 @@
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 
-class clsDepositScreen : protected clsScreen
+class clsDepositScreen : public clsScreen
 {
 
 private:

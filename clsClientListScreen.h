@@ -6,7 +6,7 @@
 #include "clsBankClient.h"
 
 
-class clsClientListScreen : clsScreen
+class clsClientListScreen : public clsScreen
 {
 private:
     static void _PrintClientRecordLine(clsBankClient Client)

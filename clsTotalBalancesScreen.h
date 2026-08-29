@@ -5,7 +5,7 @@
 #include <iomanip>
 #include "clsUtil.h"
 
-class clsTotalBalancesScreen : protected clsScreen
+class clsTotalBalancesScreen : public clsScreen
 {
 
 private:

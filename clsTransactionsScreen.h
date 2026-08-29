@@ -11,7 +11,7 @@
 using namespace std;
 
 
-class clsTransactionsScreen : clsScreen
+class clsTransactionsScreen : public clsScreen
 {
 private:
     enum enTransactionsMenueOptions 

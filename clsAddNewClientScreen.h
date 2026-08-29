@@ -8,7 +8,7 @@
 #include "clsInputValidate.h"
 
 
-class clsAddNewClientScreen : clsScreen
+class clsAddNewClientScreen : public clsScreen
 {
 private:
     static void _ReadClientInfo(clsBankClient& Client)

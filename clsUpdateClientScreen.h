@@ -5,7 +5,7 @@
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 
-class clsUpdateClientScreen : clsScreen
+class clsUpdateClientScreen : public clsScreen
 
 {
 private:
