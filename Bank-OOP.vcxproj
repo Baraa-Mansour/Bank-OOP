@@ -151,6 +151,7 @@
     <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsLoginRegister.h" />
+    <ClInclude Include="clsTransferScreen.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="clsInputValidate.h" />
     <ClInclude Include="clsLoginScreen.h" />

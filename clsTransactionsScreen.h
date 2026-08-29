@@ -7,6 +7,7 @@
 #include "clsDepositScreen.h"
 #include "clsWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
+#include "clsTransferScreen.h"
 
 using namespace std;
 
@@ -19,7 +20,8 @@ private:
         eDeposit = 1, 
         eWithdraw = 2,
         eShowTotalBalance = 3, 
-        eShowMainMenue = 4
+        eTransfer = 4,
+        eShowMainMenue = 5
     };
 
 
@@ -31,7 +33,8 @@ private:
         cout << setw(37) << left << "" << "\t[1] Deposit.\n";
         cout << setw(37) << left << "" << "\t[2] Withdraw.\n";
         cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
-        cout << setw(37) << left << "" << "\t[4] Main Menue.\n";
+        cout << setw(37) << left << "" << "\t[4] Transfer.\n";
+        cout << setw(37) << left << "" << "\t[5] Main Menue.\n";
         cout << setw(37) << left << "" << "===========================================\n";
     }
     static enTransactionsMenueOptions _ReadTransactionsMenueOption()
@@ -39,7 +42,7 @@ private:
         cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 4]? ";
 
         enTransactionsMenueOptions Choice = 
-            (enTransactionsMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 4, "", "Enter Number between 1 to 4? ");
+            (enTransactionsMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 5, "", "Enter Number between 1 to 5? ");
 
         return Choice;
     }
@@ -60,7 +63,9 @@ private:
         case enTransactionsMenueOptions::eShowTotalBalance:
             _ShowTotalBalancesScreen();
             break;
-
+        case enTransactionsMenueOptions::eTransfer:
+            _ShowTransferScreeen();
+            break;
         case enTransactionsMenueOptions::eShowMainMenue:
         default:
             break;
@@ -81,6 +86,11 @@ private:
     static void _ShowTotalBalancesScreen()
     {
         clsTotalBalancesScreen::ShowTotalBalances();
+    }
+
+    static void _ShowTransferScreeen()
+    {
+        clsTransferScreen::ShowTransferScreen();
     }
 
 public:

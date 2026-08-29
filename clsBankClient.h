@@ -295,5 +295,14 @@ public:
 
 		return true;
 	}
+
+	bool Transfer(double Amount, clsBankClient& ToClient)
+	{
+		if (!this->Withdraw(Amount))
+			return false;
+		if (!ToClient.Deposit(Amount))
+			return false;
+		return true;
+	}
 };
 const string clsBankClient::_ClientsFilePath = "Clients.txt";
