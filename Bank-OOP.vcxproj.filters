@@ -24,6 +24,7 @@
     <Text Include="Users.txt" />
     <Text Include="LoginRegister.txt" />
     <Text Include="TransferLog.txt" />
+    <Text Include="Currencies.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -120,6 +121,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsTransferLogScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsCurrency.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
