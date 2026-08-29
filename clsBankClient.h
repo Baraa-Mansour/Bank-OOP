@@ -6,13 +6,16 @@
 #include "clsString.h"
 #include "clsPerson.h"
 #include "clsFile.h"
+#include "clsDate.h"
 using namespace std;
 
 
 class clsBankClient : public clsPerson
 {
 private:
+	struct stTransferLog;
 	static const string _ClientsFilePath;
+	static const string _TransferLogPath;
 	enum enMode 
 	{ 
 		EmptyMode = 0,
@@ -63,6 +66,19 @@ private:
 		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
 
+	static string _ConvertTransferLogObjectToString(stTransferLog TransferLog, string Seperator = "#//#")
+	{
+		string TransferLogRecord = "";
+		TransferLogRecord += clsDate::GetSystemDateTimeString() + Seperator;
+		TransferLogRecord += TransferLog.SrcAccountNumber + Seperator;
+		TransferLogRecord += TransferLog.DestAccountNumber + Seperator;
+		TransferLogRecord += to_string(TransferLog.Amount) + Seperator;
+		TransferLogRecord += to_string(TransferLog.SrcBalance) + Seperator;
+		TransferLogRecord += to_string(TransferLog.DestBalance) + Seperator;
+		TransferLogRecord += TransferLog.UserName;
+		return TransferLogRecord;
+	}
+
 	static void _SaveClientToFile(clsBankClient Client)
 	{
 		string Line = _ConverClientObjectToLine(Client);
@@ -84,6 +100,11 @@ private:
 		}
 
 		clsFile::SaveLineVector(vLines, _ClientsFilePath);
+	}
+	static void _SaveTransferLogToFile(stTransferLog TransferLog)
+	{
+		string stDataLine = _ConvertTransferLogObjectToString(TransferLog);
+		clsFile::SaveLine(stDataLine, _TransferLogPath);
 	}
 
 	void _Update()
@@ -113,6 +134,16 @@ private:
 	}
 
 public:
+	struct stTransferLog
+	{
+		string UserName = "";
+		string DateTime = "";
+		double Amount = 0;
+		string SrcAccountNumber = "";
+		string DestAccountNumber = "";
+		double SrcBalance = 0;
+		double DestBalance = 0;
+	};
 	enum enSaveResults
 	{
 		svFaildEmptyObject = 0,
@@ -304,5 +335,20 @@ public:
 			return false;
 		return true;
 	}
+
+	void RegisterTransferLog(double Amount, clsBankClient DestinationClient, string UserName)
+	{
+		stTransferLog TransferLog;
+		TransferLog.DateTime = clsDate::GetSystemDateTimeString();
+		TransferLog.SrcAccountNumber = this->AccountNumber;
+		TransferLog.DestAccountNumber = DestinationClient.AccountNumber;
+		TransferLog.Amount = Amount ;
+		TransferLog.SrcBalance = this->Balance;
+		TransferLog.DestBalance = DestinationClient.Balance;
+		TransferLog.UserName = UserName;
+
+		clsBankClient::_SaveTransferLogToFile(TransferLog);
+	}
 };
 const string clsBankClient::_ClientsFilePath = "Clients.txt";
+const string clsBankClient::_TransferLogPath = "TransferLog.txt";

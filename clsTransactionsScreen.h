@@ -39,7 +39,7 @@ private:
     }
     static enTransactionsMenueOptions _ReadTransactionsMenueOption()
     {
-        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 4]? ";
+        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 5]? ";
 
         enTransactionsMenueOptions Choice = 
             (enTransactionsMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 5, "", "Enter Number between 1 to 5? ");

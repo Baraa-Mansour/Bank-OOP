@@ -59,7 +59,10 @@ public:
         if (clsInputValidate::ReadYorN("\nAre you sure you want to perform this operation? y/n? "))
         {
             if (FromClient.Transfer(Amount, ToClient))
+            {
                 cout << "\nTransfer done successfully\n";
+                FromClient.RegisterTransferLog(Amount, ToClient, CurrentUser.UserName);
+            }
             else
                 cout << "\nTransfer Faild \n";
         }
@@ -70,4 +73,3 @@ public:
         Pause("Enter Any Key To Back To Transaction Menu ...");
     }
 };
-
