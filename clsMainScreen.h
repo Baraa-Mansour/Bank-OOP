@@ -84,6 +84,7 @@ private:
             break;
         case clsMainScreen::eLoginRegister:
             _ShowLoginRegisterScreen();
+            break;
         case clsMainScreen::eLogout:
             _Logout();
             break;

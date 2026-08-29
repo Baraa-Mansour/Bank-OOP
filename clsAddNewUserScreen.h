@@ -71,6 +71,9 @@ private:
         if (clsInputValidate::ReadYorN("\nManage Users? y/n? "))
             Permissions += clsUser::enPermissions::pManageUsers;
 
+        if (clsInputValidate::ReadYorN("\nShow Login Register List? y/n? "))
+            Permissions += clsUser::enPermissions::pLoginRegister;
+
         return Permissions;
     }
 
