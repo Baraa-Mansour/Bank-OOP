@@ -4,6 +4,7 @@
 #include "Global.h"
 #include "clsDate.h"
 #include "clsFile.h"
+#include "clsUtil.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ private:
         string LoginRecord = "";
         LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
         LoginRecord += Object.UserName + Seperator;
-        LoginRecord += Object.Password + Seperator;
+        LoginRecord += clsUtil::EncryptText(Object.Password, ENCRYPTION_KEY) + Seperator;
         LoginRecord += to_string(Object.Permissions);
         return LoginRecord;
     }
@@ -42,7 +43,7 @@ private:
 
         LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
         LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
-        LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+        LoginRegisterRecord.Password = clsUtil::DecryptText(LoginRegisterDataLine[2], ENCRYPTION_KEY);
         LoginRegisterRecord.Permissions = stoi(LoginRegisterDataLine[3]);
 
         return LoginRegisterRecord;
