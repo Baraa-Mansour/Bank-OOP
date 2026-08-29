@@ -27,15 +27,24 @@ public:
         system("cls");
         _DrawScreenHeader("\t  Login Screen");
 
+        short FailedLoginCounter = 1;
         string UserName = clsInputValidate::ReadString("Enter UserName: ");
         string Password = clsInputValidate::ReadString("Enter Password: ");
 
-        while (!_Login(UserName, Password))
+        while (!_Login(UserName, Password) && FailedLoginCounter != 3)
         {
-            cout << "\nInvalid UserName/Password, Try Again." << endl << endl;
+            cout << "\nInvalid UserName/Password, Try Again." << endl;
+            cout << "You Have [" << (3-FailedLoginCounter) << "] Trials To Login" << endl << endl;
+
+            FailedLoginCounter++;
 
             UserName = clsInputValidate::ReadString("Enter UserName: ");
             Password = clsInputValidate::ReadString("Enter Password: ");
+        }
+
+        if (FailedLoginCounter == 3)
+        {
+            IsSystemLocked = true;
         }
     }
 };

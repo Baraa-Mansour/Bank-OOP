@@ -11,7 +11,14 @@ int main()
     while (true)
     {
         clsLoginScreen::ShowLoginScreen();
+        if (IsSystemLocked)
+        {
+            break;
+        }
         clsMainScreen::ShowMainmenuScreen();
     }
+
+    if (IsSystemLocked)
+        cout << endl << endl << "System Locked!!" << endl;
     return 0;
 }
