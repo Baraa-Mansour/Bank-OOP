@@ -8,6 +8,7 @@
 #include "clsWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
 #include "clsTransferScreen.h"
+#include "clsTransferLogScreen.h"
 
 using namespace std;
 
@@ -21,7 +22,8 @@ private:
         eWithdraw = 2,
         eShowTotalBalance = 3, 
         eTransfer = 4,
-        eShowMainMenue = 5
+        eTrasferLog = 5,
+        eShowMainMenue = 6
     };
 
 
@@ -34,15 +36,16 @@ private:
         cout << setw(37) << left << "" << "\t[2] Withdraw.\n";
         cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
         cout << setw(37) << left << "" << "\t[4] Transfer.\n";
-        cout << setw(37) << left << "" << "\t[5] Main Menue.\n";
+        cout << setw(37) << left << "" << "\t[5] Transfer Log.\n";
+        cout << setw(37) << left << "" << "\t[6] Main Menue.\n";
         cout << setw(37) << left << "" << "===========================================\n";
     }
     static enTransactionsMenueOptions _ReadTransactionsMenueOption()
     {
-        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 5]? ";
+        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 6]? ";
 
         enTransactionsMenueOptions Choice = 
-            (enTransactionsMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 5, "", "Enter Number between 1 to 5? ");
+            (enTransactionsMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 6, "", "Enter Number between 1 to 6? ");
 
         return Choice;
     }
@@ -65,6 +68,9 @@ private:
             break;
         case enTransactionsMenueOptions::eTransfer:
             _ShowTransferScreeen();
+            break;
+        case enTransactionsMenueOptions::eTrasferLog:
+            _ShowTransferLogScreeen();
             break;
         case enTransactionsMenueOptions::eShowMainMenue:
         default:
@@ -91,6 +97,11 @@ private:
     static void _ShowTransferScreeen()
     {
         clsTransferScreen::ShowTransferScreen();
+    }
+
+    static void _ShowTransferLogScreeen()
+    {
+        clsTransferLogScreen::ShowTransferLogScreen();
     }
 
 public:

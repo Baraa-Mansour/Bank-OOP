@@ -78,6 +78,21 @@ private:
 		TransferLogRecord += TransferLog.UserName;
 		return TransferLogRecord;
 	}
+	static stTransferLog _ConvertLineToTransferLog(string Line, string Seperator = "#//#")
+	{
+		stTransferLog TrnsferLogRecord;
+
+		vector <string> vTrnsferLogRecordLine = clsString::Split(Line, Seperator);
+		TrnsferLogRecord.DateTime = vTrnsferLogRecordLine[0];
+		TrnsferLogRecord.SrcAccountNumber = vTrnsferLogRecordLine[1];
+		TrnsferLogRecord.DestAccountNumber = vTrnsferLogRecordLine[2];
+		TrnsferLogRecord.Amount = stod(vTrnsferLogRecordLine[3]);
+		TrnsferLogRecord.SrcBalance = stod(vTrnsferLogRecordLine[4]);
+		TrnsferLogRecord.DestBalance = stod(vTrnsferLogRecordLine[5]);
+		TrnsferLogRecord.UserName = vTrnsferLogRecordLine[6];
+
+		return TrnsferLogRecord;
+	}
 
 	static void _SaveClientToFile(clsBankClient Client)
 	{
@@ -348,6 +363,21 @@ public:
 		TransferLog.UserName = UserName;
 
 		clsBankClient::_SaveTransferLogToFile(TransferLog);
+	}
+
+	static vector<stTransferLog> GetAllTransfersLogs()
+	{
+		vector<string> vLines = clsFile::GetAllLines(_TransferLogPath);
+		vector<stTransferLog> Logs;
+
+		for (string& Line : vLines)
+		{
+			stTransferLog Log = _ConvertLineToTransferLog(Line);
+
+			Logs.push_back(Log);
+		}
+
+		return Logs;
 	}
 };
 const string clsBankClient::_ClientsFilePath = "Clients.txt";

@@ -23,6 +23,7 @@
     <Text Include="Clients.txt" />
     <Text Include="Users.txt" />
     <Text Include="LoginRegister.txt" />
+    <Text Include="TransferLog.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -116,6 +117,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsTransferScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransferLogScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

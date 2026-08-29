@@ -132,6 +132,7 @@
   <ItemGroup>
     <Text Include="Clients.txt" />
     <Text Include="LoginRegister.txt" />
+    <Text Include="TransferLog.txt" />
     <Text Include="Users.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsLoginRegister.h" />
+    <ClInclude Include="clsTransferLogScreen.h" />
     <ClInclude Include="clsTransferScreen.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="clsInputValidate.h" />
