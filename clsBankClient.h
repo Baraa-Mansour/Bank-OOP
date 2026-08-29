@@ -69,7 +69,7 @@ private:
 
 		clsFile::SaveLine(Line, _ClientsFilePath);
 	}
-	static void _SaveClientsVector(vector<clsBankClient> vClients)
+	static void _SaveClientsVectorToFile(vector<clsBankClient> vClients)
 	{
 		vector<string> vLines;
 		string Line = "";
@@ -104,7 +104,7 @@ private:
 
 		if (IsFound)
 		{
-			_SaveClientsVector(vClients);
+			_SaveClientsVectorToFile(vClients);
 		}
 	}
 	void _AddNew()
@@ -253,7 +253,7 @@ public:
 
 		if (IsFound)
 		{
-			_SaveClientsVector(vClients);
+			_SaveClientsVectorToFile(vClients);
 			*this = _GetEmptyClientObject();
 		}
 
