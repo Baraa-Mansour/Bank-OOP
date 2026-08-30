@@ -42,7 +42,7 @@ public:
 	{
 		_DrawScreenHeader("\t  Find Currency Screen");
 
-		enFindBy Option = (enFindBy)clsInputValidate::ReadIntNumberBetween(1, 2, "Find By: [1]Code [2]Country: ", "");
+		enFindBy Option = (enFindBy)clsInputValidate::ReadNumberBetween(1, 2, "Find By: [1]Code [2]Country: ", "");
 		
 		clsCurrency Currency;
 		string Name = "";

@@ -12,8 +12,19 @@ using namespace std;
 
 class clsBankClient : public clsPerson
 {
+public:
+	struct stTransferLog
+	{
+		string UserName = "";
+		string DateTime = "";
+		double Amount = 0;
+		string SrcAccountNumber = "";
+		string DestAccountNumber = "";
+		double SrcBalance = 0;
+		double DestBalance = 0;
+	};
 private:
-	struct stTransferLog;
+	
 	static const string _ClientsFilePath;
 	static const string _TransferLogPath;
 	enum enMode 
@@ -149,16 +160,6 @@ private:
 	}
 
 public:
-	struct stTransferLog
-	{
-		string UserName = "";
-		string DateTime = "";
-		double Amount = 0;
-		string SrcAccountNumber = "";
-		string DestAccountNumber = "";
-		double SrcBalance = 0;
-		double DestBalance = 0;
-	};
 	enum enSaveResults
 	{
 		svFaildEmptyObject = 0,
@@ -276,7 +277,7 @@ public:
 		case enMode::EmptyMode:
 			return enSaveResults::svFaildEmptyObject;
 		default:
-			break;
+			return enSaveResults::svFaildEmptyObject;
 		}
 	}
 

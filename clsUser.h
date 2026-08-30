@@ -252,7 +252,6 @@ public:
 
     enSaveResults Save()
     {
-
         switch (this->_Mode)
         {
         case enMode::EmptyMode:
@@ -275,6 +274,8 @@ public:
                 _Mode = enMode::UpdateMode;
                 return enSaveResults::svSucceeded;
             }
+        default:
+            return enSaveResults::svFaildEmptyObject;
         }
     }
 

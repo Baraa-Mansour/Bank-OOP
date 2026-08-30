@@ -33,11 +33,11 @@ private:
 
     static double _ReadTransferAmount(clsBankClient FromClient)
     {
-        double Amount =  clsInputValidate::ReadDblNumberBetween(0, std::numeric_limits<double>::max(), "\nPlease enter Transfer amount? ");
+        double Amount =  clsInputValidate::ReadNumberBetween<double>(0, std::numeric_limits<double>::max(), "\nPlease enter Transfer amount? ");
         while (Amount > FromClient.Balance)
         {
             cout << "\nAmount Exceeds the available Balance, Enter another Amount ? ";
-            Amount = clsInputValidate::ReadDblNumberBetween(0, std::numeric_limits<double>::max(), "");
+            Amount = clsInputValidate::ReadNumberBetween<double>(0, std::numeric_limits<double>::max(), "");
         }
         return Amount;
     }

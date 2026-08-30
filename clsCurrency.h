@@ -197,16 +197,16 @@ public:
         return (double)(Amount / Rate);
     }
 
-    float ConvertToOtherCurrency(double Amount, clsCurrency Currency2)
+    double ConvertToOtherCurrency(double Amount, clsCurrency Currency2)
     {
-        float AmountInUSD = ConvertToUSD(Amount);
+        double AmountInUSD = ConvertToUSD(Amount);
 
         if (Currency2.CurrencyCode == "USD")
         {
             return AmountInUSD;
         }
 
-        return (float)(AmountInUSD * Currency2.Rate);
+        return (double)(AmountInUSD * Currency2.Rate);
     }
 };
 const string clsCurrency::_CurrencyFilePath = "Currencies.txt";

@@ -56,7 +56,7 @@ private:
     static enMainMenueOptions _GetMainmenuOption()
     {
         cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 10]? ";
-        return (enMainMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 10, "");
+        return (enMainMenueOptions)clsInputValidate::ReadNumberBetween<short>(1, 10, "");
     }
     static void _PerformMainmenuOption(enMainMenueOptions Option)
     {

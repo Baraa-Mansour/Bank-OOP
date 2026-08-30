@@ -23,7 +23,7 @@ private:
 
         Client.PinCode = clsInputValidate::ReadString("\nEnter PinCode: ");
 
-        Client.Balance = clsInputValidate::ReadDblNumber("\nEnter Account Balance: ");
+        Client.Balance = clsInputValidate::ReadNumber<double>("\nEnter Account Balance: ");
     }
 
     static void _PrintClient(clsBankClient Client)

@@ -42,7 +42,7 @@ private:
         cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 6]? ";
 
         enManageUsersMenueOptions Option = 
-            (enManageUsersMenueOptions)clsInputValidate::ReadIntNumberBetween(1, 6, "", "Enter Number between 1 to 6? ");
+            (enManageUsersMenueOptions)clsInputValidate::ReadNumberBetween<short>(1, 6, "", "Enter Number between 1 to 6? ");
 
         return Option;
     }

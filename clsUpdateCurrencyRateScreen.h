@@ -13,7 +13,7 @@ private:
     {
         double NewRate = 0;
 
-        NewRate = clsInputValidate::ReadDblNumberBetween(0, std::numeric_limits<double>::max(), "\nEnter New Rate: ", "Enter Positive Number !");
+        NewRate = clsInputValidate::ReadNumberBetween<double>(0, std::numeric_limits<double>::max(), "\nEnter New Rate: ", "Enter Positive Number !");
         return NewRate;
     }
 

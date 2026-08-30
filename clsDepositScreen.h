@@ -50,7 +50,7 @@ public:
         clsBankClient Client1 = clsBankClient::Find(AccountNumber);
         _PrintClient(Client1);
 
-        double Amount = clsInputValidate::ReadDblNumberBetween(0, std::numeric_limits<double>::max() ,"\nPlease enter deposit amount? ");
+        double Amount = clsInputValidate::ReadNumberBetween<double>(0, std::numeric_limits<double>::max() ,"\nPlease enter deposit amount? ");
 
         if (clsInputValidate::ReadYorN("\nAre you sure you want to perform this transaction? "))
         {

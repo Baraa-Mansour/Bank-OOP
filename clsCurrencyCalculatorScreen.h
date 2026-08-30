@@ -13,7 +13,7 @@ private:
     {
         double NewRate = 0;
 
-        NewRate = clsInputValidate::ReadDblNumberBetween(0, std::numeric_limits<double>::max(), "\nEnter Amount: ", "Enter Positive Number !");
+        NewRate = clsInputValidate::ReadNumberBetween<double>(0, std::numeric_limits<double>::max(), "\nEnter Amount: ", "Enter Positive Number !");
         return NewRate;
     }
 
@@ -51,7 +51,7 @@ private:
         cout << "\n_____________________________\n\n";
     }
 
-    static void _PrintCalculationsResults(float Amount, clsCurrency Currency1, clsCurrency Currency2)
+    static void _PrintCalculationsResults(double Amount, clsCurrency Currency1, clsCurrency Currency2)
     {
         _PrintCurrencyCard(Currency1, "Convert From:");
 
